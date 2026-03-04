@@ -8,7 +8,7 @@
 
 ## Phase 2: Python Application Development (In-folder: 01-generation)
 - [x] Task: Initialize Python project using `uv` and install dependencies (`google-cloud-bigquery`, `google-cloud-aiplatform`, `sqlalchemy`, `pgvector`) dce87c5
-- [ ] Task: Implement BigQuery data fetcher (with tests)
+- [x] Task: Implement BigQuery data fetcher (with tests) 0c1fc01
 - [ ] Task: Implement Vertex AI embedding generator for `text-embedding-005` (with tests)
 - [ ] Task: Implement AlloyDB data writer (with tests)
 - [ ] Task: Implement main orchestration logic for the Cloud Run Job
