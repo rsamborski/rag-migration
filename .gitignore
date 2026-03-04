@@ -217,3 +217,4 @@ __marimo__/
 # Binaries and Logs
 alloydb-auth-proxy
 proxy.log
+01-generation/.venv/

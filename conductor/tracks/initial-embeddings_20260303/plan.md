@@ -7,7 +7,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Infrastructure Setup (AlloyDB)' (Protocol in workflow.md)
 
 ## Phase 2: Python Application Development (In-folder: 01-generation)
-- [ ] Task: Initialize Python project using `uv` and install dependencies (`google-cloud-bigquery`, `google-cloud-aiplatform`, `sqlalchemy`, `pgvector`)
+- [~] Task: Initialize Python project using `uv` and install dependencies (`google-cloud-bigquery`, `google-cloud-aiplatform`, `sqlalchemy`, `pgvector`)
 - [ ] Task: Implement BigQuery data fetcher (with tests)
 - [ ] Task: Implement Vertex AI embedding generator for `text-embedding-005` (with tests)
 - [ ] Task: Implement AlloyDB data writer (with tests)
