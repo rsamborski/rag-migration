@@ -8,6 +8,7 @@
 4. **High Code Coverage:** Aim for >80% code coverage for all modules
 5. **User Experience First:** Every decision should prioritize user experience
 6. **Non-Interactive & CI-Aware:** Prefer non-interactive commands. Use `CI=true` for watch-mode tools (tests, linters) to ensure single execution.
+7. **Cloud-Native Knowledge:** Always use project documentation search tools (e.g., `search_documents`, `get_document`) to retrieve the latest information, versions, and best practices from Google Cloud documentation before executing cloud-related tasks.
 
 ## Task Workflow
 
@@ -154,9 +155,10 @@ Before marking any task complete, verify:
 
 ### Setup
 ```bash
-# Example: Commands to set up the development environment (e.g., install dependencies, configure database)
-# e.g., for a Node.js project: npm install
-# e.g., for a Go project: go mod tidy
+# Configure GCP Project and Account
+gcloud config set account remik@cloudadvocacyorg.joonix.net
+gcloud config set project rsamborski-rag
+export GOOGLE_CLOUD_PROJECT=rsamborski-rag
 ```
 
 ### Daily Development

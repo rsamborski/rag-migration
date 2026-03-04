@@ -1,8 +1,9 @@
 # Implementation Plan: Initial Embeddings Creation Pipeline
 
 ## Phase 1: Infrastructure Setup (AlloyDB)
-- [ ] Task: Provision AlloyDB cluster and instance (Terraform)
-- [ ] Task: Create database and the `products` table with `vector` type column
+- [x] Task: Configure local GCP environment for project `rsamborski-rag` and account `remik@cloudadvocacyorg.joonix.net`
+- [x] Task: Provision AlloyDB cluster and instance (Terraform) bf3318f
+- [~] Task: Create database and the `products` table with `vector` type column
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Infrastructure Setup (AlloyDB)' (Protocol in workflow.md)
 
 ## Phase 2: Python Application Development (In-folder: 01-generation)

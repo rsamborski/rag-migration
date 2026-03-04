@@ -4,6 +4,7 @@ This document outlines the key technologies chosen for the RAG Embedding Migrati
 
 ## 1. Backend & Data Processing
 
+*   **GCP Project:** `rsamborski-rag` (Target project for all infrastructure and services)
 *   **Compute Engine:** **Google Cloud Run Jobs**
     *   **Rationale:** Chosen for its serverless, scalable nature, which is ideal for the "Big Bang" historical corpus re-embedding. Its ability to run highly parallelizable tasks allows for rapid and cost-effective processing of large datasets without managing underlying infrastructure.
 
