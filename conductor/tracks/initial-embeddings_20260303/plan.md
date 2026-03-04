@@ -2,7 +2,7 @@
 
 ## Phase 1: Infrastructure Setup (AlloyDB)
 - [x] Task: Configure local GCP environment for project `rsamborski-rag` and account `remik@cloudadvocacyorg.joonix.net`
-- [x] Task: Provision AlloyDB cluster and instance (Terraform) bf3318f
+- [x] Task: Provision AlloyDB cluster and instance (Terraform) 52d06fd
 - [~] Task: Create database and the `products` table with `vector` type column
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Infrastructure Setup (AlloyDB)' (Protocol in workflow.md)
 
