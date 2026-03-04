@@ -159,6 +159,10 @@ Before marking any task complete, verify:
 gcloud config set account remik@cloudadvocacyorg.joonix.net
 gcloud config set project rsamborski-rag
 export GOOGLE_CLOUD_PROJECT=rsamborski-rag
+
+# Database Connectivity (Manual Step)
+# IMPORTANT: Start the AlloyDB Auth Proxy in a SEPARATE terminal before running any database commands:
+# ./alloydb-auth-proxy projects/rsamborski-rag/locations/europe-central2/clusters/rag-migration-cluster/instances/rag-migration-instance --port 5434 --auto-iam-authn --public-ip
 ```
 
 ### Daily Development

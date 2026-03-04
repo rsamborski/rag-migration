@@ -71,6 +71,15 @@ resource "google_alloydb_instance" "default" {
   machine_config {
     cpu_count = 2
   }
+
+  database_flags = {
+    "password.enforce_complexity" = "on"
+  }
+
+  # Enable Public IP for the instance
+  network_config {
+    enable_public_ip = true
+  }
 }
 
 output "cluster_name" {
@@ -79,4 +88,8 @@ output "cluster_name" {
 
 output "instance_ip" {
   value = google_alloydb_instance.default.ip_address
+}
+
+output "public_ip" {
+  value = google_alloydb_instance.default.public_ip_address
 }
