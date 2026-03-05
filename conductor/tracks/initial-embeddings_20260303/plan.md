@@ -11,7 +11,8 @@
 - [x] Task: Implement BigQuery data fetcher (with tests) 0c1fc01
 - [x] Task: Implement Vertex AI embedding generator for `text-embedding-005` (with tests) 2febe15
 - [x] Task: Implement AlloyDB data writer (with tests) 0cb3b1b
-- [ ] Task: Implement main orchestration logic for the Cloud Run Job
+- [x] Task: Implement worker logic using `CLOUD_RUN_TASK_INDEX` for batch offsets d16872e
+- [x] Task: Implement orchestrator to calculate batches and trigger Cloud Run Job d16872e
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Python Application Development' (Protocol in workflow.md)
 
 ## Phase 3: Containerization and Deployment
