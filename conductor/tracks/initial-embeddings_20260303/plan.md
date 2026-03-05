@@ -10,7 +10,7 @@
 - [x] Task: Initialize Python project using `uv` and install dependencies (`google-cloud-bigquery`, `google-cloud-aiplatform`, `sqlalchemy`, `pgvector`) dce87c5
 - [x] Task: Implement BigQuery data fetcher (with tests) 0c1fc01
 - [x] Task: Implement Vertex AI embedding generator for `text-embedding-005` (with tests) 2febe15
-- [ ] Task: Implement AlloyDB data writer (with tests)
+- [x] Task: Implement AlloyDB data writer (with tests) 0cb3b1b
 - [ ] Task: Implement main orchestration logic for the Cloud Run Job
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Python Application Development' (Protocol in workflow.md)
 
