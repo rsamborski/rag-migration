@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import MagicMock, patch
-from src.bigquery_fetcher import fetch_products
+from src.bigquery_fetcher import fetch_products, get_total_products
 
 class MockRow:
     def __init__(self, **kwargs):
@@ -38,3 +38,22 @@ def test_fetch_products_empty():
     with patch("google.cloud.bigquery.Client", return_value=mock_client):
         products = fetch_products(limit=10)
         assert len(products) == 0
+
+def test_get_total_products_success():
+    mock_client = MagicMock()
+    mock_query_job = MagicMock()
+    mock_results = [MagicMock(total_count=1234)]
+    mock_query_job.result.return_value = mock_results
+    mock_client.query.return_value = mock_query_job
+    
+    with patch("google.cloud.bigquery.Client", return_value=mock_client):
+        total = get_total_products()
+        assert total == 1234
+
+def test_fetch_products_error():
+    mock_client = MagicMock()
+    mock_client.query.side_effect = Exception("BQ Error")
+    
+    with patch("google.cloud.bigquery.Client", return_value=mock_client):
+        products = fetch_products()
+        assert products == []
