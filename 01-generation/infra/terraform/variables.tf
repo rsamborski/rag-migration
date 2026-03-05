@@ -8,3 +8,9 @@ variable "region" {
   type        = string
   default     = "europe-central2"
 }
+
+variable "db_password" {
+  description = "Password for the AlloyDB postgres user (should be managed by Secret Manager in production)"
+  type        = string
+  sensitive   = true
+}

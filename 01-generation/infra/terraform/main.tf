@@ -60,7 +60,7 @@ resource "google_alloydb_cluster" "default" {
   }
 
   initial_user {
-    password = "change-me-immediately" # In a real scenario, use a secret manager
+    password = var.db_password # In a real scenario, use a secret manager
   }
 
   depends_on = [

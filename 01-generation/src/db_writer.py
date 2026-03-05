@@ -15,7 +15,9 @@ def init_db_engine() -> sqlalchemy.engine.Engine:
 
     inst_uri = f"projects/{project_id}/locations/{region}/clusters/{cluster}/instances/{instance}"
     user = "postgres"
-    password = "change-me-immediately"
+    # In a production environment, this password should be securely fetched from 
+    # Google Cloud Secret Manager rather than passed as a plain environment variable.
+    password = os.environ.get("DB_PASSWORD", "change-me-immediately")
     db_name = "rag_migration"
 
     connector = Connector()
