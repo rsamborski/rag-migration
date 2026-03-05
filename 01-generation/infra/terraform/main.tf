@@ -17,6 +17,12 @@ resource "google_project_service" "compute" {
   disable_on_destroy = false
 }
 
+resource "google_project_service" "aiplatform" {
+  project            = var.project_id
+  service            = "aiplatform.googleapis.com"
+  disable_on_destroy = false
+}
+
 resource "google_compute_network" "default" {
   name                    = "rag-migration-network"
   auto_create_subnetworks = false
