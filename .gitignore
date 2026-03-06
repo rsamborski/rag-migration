@@ -213,8 +213,13 @@ __marimo__/
 .terraform.lock.hcl
 *.tfstate
 *.tfstate.backup
+*.tfplan
 
 # Binaries and Logs
 alloydb-auth-proxy
 proxy.log
 01-generation/.venv/
+
+# Gemini sandbox
+gemini-sandbox.sh
+sa-key.json
