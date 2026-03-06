@@ -9,6 +9,7 @@
 5. **User Experience First:** Every decision should prioritize user experience
 6. **Non-Interactive & CI-Aware:** Prefer non-interactive commands. Use `CI=true` for watch-mode tools (tests, linters) to ensure single execution.
 7. **Cloud-Native Knowledge:** Always use project documentation search tools (e.g., `search_documents`, `get_document`) to retrieve the latest information, versions, and best practices from Google Cloud documentation before executing cloud-related tasks.
+8. **Infrastructure Changes (Terraform):** Always run `terraform plan -out [filename]` first. Only execute `terraform apply [filename]` after explicitly asking the user to review the plan and receiving their confirmation. Ensure plan files (e.g., `*.tfplan`) are added to `.gitignore`.
 
 ## Task Workflow
 

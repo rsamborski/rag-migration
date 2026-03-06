@@ -99,3 +99,85 @@ output "instance_ip" {
 output "public_ip" {
   value = google_alloydb_instance.default.public_ip_address
 }
+
+# --- Cloud Run and Artifact Registry ---
+
+resource "google_project_service" "run" {
+  project            = var.project_id
+  service            = "run.googleapis.com"
+  disable_on_destroy = false
+}
+
+resource "google_project_service" "artifactregistry" {
+  project            = var.project_id
+  service            = "artifactregistry.googleapis.com"
+  disable_on_destroy = false
+}
+
+resource "google_artifact_registry_repository" "repo" {
+  location      = var.region
+  repository_id = "rag-migration-repo"
+  description   = "Docker repository for RAG Migration pipeline"
+  format        = "DOCKER"
+  depends_on    = [google_project_service.artifactregistry]
+}
+
+# Service Account for Cloud Run
+resource "google_service_account" "job_sa" {
+  account_id   = "rag-job-sa"
+  display_name = "Cloud Run Job Service Account"
+}
+
+# Roles for the SA
+resource "google_project_iam_member" "sa_roles" {
+  for_each = toset([
+    "roles/aiplatform.user",
+    "roles/bigquery.dataViewer",
+    "roles/bigquery.jobUser",
+    "roles/alloydb.client",
+  ])
+  project = var.project_id
+  role    = each.key
+  member  = "serviceAccount:${google_service_account.job_sa.email}"
+}
+
+resource "google_cloud_run_v2_job" "job" {
+  name     = "rag-embedding-job"
+  location = var.region
+
+  template {
+    template {
+      service_account = google_service_account.job_sa.email
+      containers {
+        # We use a dummy image initially. The actual image will be built and deployed via gcloud/CI
+        image = "us-docker.pkg.dev/cloudrun/container/job:latest"
+        
+        env {
+          name  = "GOOGLE_CLOUD_PROJECT"
+          value = var.project_id
+        }
+        env {
+          name  = "GOOGLE_CLOUD_REGION"
+          value = var.region
+        }
+        env {
+          name  = "DB_PASSWORD"
+          value = var.db_password # Ideally from Secret Manager
+        }
+      }
+    }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      template[0].template[0].containers[0].image,
+    ]
+  }
+
+  depends_on = [google_project_service.run]
+}
+
+output "repository_url" {
+  value = "${google_artifact_registry_repository.repo.location}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.repo.repository_id}"
+}
+

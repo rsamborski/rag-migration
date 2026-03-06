@@ -16,7 +16,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Python Application Development' (Protocol in workflow.md) 4fd12c5
 
 ## Phase 3: Containerization and Deployment
-- [ ] Task: Create Dockerfile for the Python application (optimized for `uv`)
-- [ ] Task: Provision Cloud Run Job (Terraform)
+- [x] Task: Create Dockerfile for the Python application (optimized for `uv`) 99cd336
+- [~] Task: Provision Cloud Run Job (Terraform)
 - [ ] Task: Deploy and run the initial ingestion job
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Containerization and Deployment' (Protocol in workflow.md)
