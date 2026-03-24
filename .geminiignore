@@ -1,0 +1,6 @@
+tfplan
+*.tfplan
+sa-key.json
+.venv/
+__pycache__/
+.terraform/

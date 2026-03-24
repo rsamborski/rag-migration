@@ -214,6 +214,7 @@ __marimo__/
 *.tfstate
 *.tfstate.backup
 *.tfplan
+tfplan
 
 # Binaries and Logs
 alloydb-auth-proxy
