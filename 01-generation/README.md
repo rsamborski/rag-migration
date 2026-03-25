@@ -59,6 +59,9 @@ Ensure your `GOOGLE_CLOUD_PROJECT` is set to the target project (e.g., `rsambors
     
     # Run a single batch of 5 items
     uv run main.py
+    
+    # Run all batches at once to process through the whole dataset
+    uv run orchestrator.py
     ```
 
 ## Infrastructure (Terraform)
