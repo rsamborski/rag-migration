@@ -29,12 +29,14 @@ The provided shell script `infra/scripts/deploy_and_run.sh` automates the entire
 3.  **Triggers** the `orchestrator.py` locally to start and monitor the job.
 
 ```bash
+# Set your configuration
+export PROJECT_ID="your-project-id"
+export REGION="europe-central2"
+
 # From the project root
 chmod +x 01-generation/infra/scripts/deploy_and_run.sh
 ./01-generation/infra/scripts/deploy_and_run.sh
 ```
-
-Ensure your `GOOGLE_CLOUD_PROJECT` is set to the target project (e.g., `rsamborski-rag`) before running.
 
 ## Local Development & Testing
 

@@ -2,11 +2,11 @@
 set -e
 
 # Configuration
-export PROJECT_ID="rsamborski-rag"
-export REGION="europe-central2"
-export REPO_NAME="rag-migration-repo"
-export IMAGE_NAME="rag-embedding-worker"
-export JOB_NAME="rag-embedding-job"
+export PROJECT_ID="${PROJECT_ID:-your-project-id}"
+export REGION="${REGION:-europe-central2}"
+export REPO_NAME="${REPO_NAME:-rag-migration-repo}"
+export IMAGE_NAME="${IMAGE_NAME:-rag-embedding-worker}"
+export JOB_NAME="${JOB_NAME:-rag-embedding-job}"
 
 # Full Image URL
 export IMAGE_URL="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/${IMAGE_NAME}:latest"
