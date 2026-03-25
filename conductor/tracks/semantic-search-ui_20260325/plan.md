@@ -3,7 +3,7 @@
 ## Phase 1: Setup and Project Initialization
 - [x] Task: Initialize Next.js project with App Router, TypeScript, and Tailwind CSS 1420bf5
 - [x] Task: Install required dependencies (e.g., `pgvector`, `pg`, `@google/genai`) 9d7f11f
-- [ ] Task: Configure environment variables for AlloyDB connection and Vertex AI
+- [x] Task: Configure environment variables for AlloyDB connection and Vertex AI 2ea890b
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Setup and Project Initialization' (Protocol in workflow.md)
 
 ## Phase 2: Backend (API) Development
