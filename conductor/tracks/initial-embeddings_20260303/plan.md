@@ -18,5 +18,5 @@
 ## Phase 3: Containerization and Deployment
 - [x] Task: Create Dockerfile for the Python application (optimized for `uv`) 99cd336
 - [x] Task: Provision Cloud Run Job (Terraform) d79334e
-- [~] Task: Deploy and run the initial ingestion job
+- [x] Task: Deploy and run the initial ingestion job 9ff86f9
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Containerization and Deployment' (Protocol in workflow.md)
