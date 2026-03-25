@@ -8,7 +8,7 @@ Upgrading core embedding infrastructure without downtime or regressions is a sig
 
 The project is structured as a series of steps (or phases), each building upon the last:
 
-1.  **Initial Generation (`01-generation/`)**: Setting up the baseline. Ingesting raw data, generating initial embeddings using Google's `text-embedding-005` model via the new `google-genai` SDK, and storing them in an AlloyDB vector database.
+1.  **Initial Generation (`01-generation/`)**: (COMPLETED) Fully functional pipeline that ingests raw product data from BigQuery, generates initial embeddings using `text-embedding-004` (via `google-genai` SDK), and stores them in a highly-available AlloyDB for PostgreSQL vector database. Highly parallelizable execution using Cloud Run Jobs.
 2.  *(Future phases will cover semantic search UI, evaluation frameworks, and the actual zero-downtime migration process.)*
 
 ## Technical Stack

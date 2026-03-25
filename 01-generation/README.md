@@ -21,6 +21,21 @@ The pipeline is decoupled into two main components:
 *   Python 3.13+ and `uv` package manager installed
 *   (Local Testing) AlloyDB Auth Proxy installed
 
+## Deployment & Execution
+
+The provided shell script `infra/scripts/deploy_and_run.sh` automates the entire process:
+1.  **Builds & Pushes** the Docker image to Artifact Registry.
+2.  **Updates** the Cloud Run Job configuration with the new image.
+3.  **Triggers** the `orchestrator.py` locally to start and monitor the job.
+
+```bash
+# From the project root
+chmod +x 01-generation/infra/scripts/deploy_and_run.sh
+./01-generation/infra/scripts/deploy_and_run.sh
+```
+
+Ensure your `GOOGLE_CLOUD_PROJECT` is set to the target project (e.g., `rsamborski-rag`) before running.
+
 ## Local Development & Testing
 
 1.  **Install dependencies:**
