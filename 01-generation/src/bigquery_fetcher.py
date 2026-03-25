@@ -6,7 +6,8 @@ def get_total_products() -> int:
     """
     Returns the total number of products in the dataset.
     """
-    client = bigquery.Client()
+    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT", "rsamborski-rag")
+    client = bigquery.Client(project=project_id)
     query = "SELECT COUNT(*) as total_count FROM `bigquery-public-data.thelook_ecommerce.products`"
     try:
         query_job = client.query(query)
@@ -23,7 +24,8 @@ def fetch_products(limit=100, offset=0):
     """
     Fetches product data from the BigQuery public dataset 'thelook_ecommerce' using limit and offset.
     """
-    client = bigquery.Client()
+    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT", "rsamborski-rag")
+    client = bigquery.Client(project=project_id)
 
     query = f"""
         SELECT 

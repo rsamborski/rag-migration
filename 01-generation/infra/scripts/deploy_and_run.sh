@@ -2,14 +2,14 @@
 set -e
 
 # Configuration
-PROJECT_ID="rsamborski-rag"
-REGION="europe-central2"
-REPO_NAME="rag-migration-repo"
-IMAGE_NAME="rag-embedding-worker"
-JOB_NAME="rag-embedding-job"
+export PROJECT_ID="rsamborski-rag"
+export REGION="europe-central2"
+export REPO_NAME="rag-migration-repo"
+export IMAGE_NAME="rag-embedding-worker"
+export JOB_NAME="rag-embedding-job"
 
 # Full Image URL
-IMAGE_URL="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/${IMAGE_NAME}:latest"
+export IMAGE_URL="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/${IMAGE_NAME}:latest"
 
 echo "---------------------------------------------------------"
 echo "🚀 Starting Deployment Pipeline"

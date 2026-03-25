@@ -30,7 +30,11 @@ def execute_cloud_run_job(tasks_count: int, batch_size: int):
     print(f"📦 Total Tasks: {tasks_count} (Batch Size: {batch_size})")
     
     try:
-        operation = client.run_job(name=job_path, overrides=overrides)
+        request = run_v2.RunJobRequest(
+            name=job_path,
+            overrides=overrides
+        )
+        operation = client.run_job(request=request)
         # The operation metadata contains the execution name
         # We need to wait a tiny bit or parse the metadata to get the execution ID
         # For simplicity, we'll fetch the latest execution for this job
@@ -74,7 +78,7 @@ def poll_execution(execution_name: str):
             # Using conditions to check for completion
             is_finished = False
             for condition in execution.conditions:
-                if condition.type == "Ready" and condition.status in ["True", "False"]:
+                if condition.type == "Completed" and condition.state.name in ["CONDITION_SUCCEEDED", "CONDITION_FAILED"]:
                     is_finished = True
                     break
             

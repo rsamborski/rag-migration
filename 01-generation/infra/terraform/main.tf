@@ -135,6 +135,8 @@ resource "google_project_iam_member" "sa_roles" {
     "roles/bigquery.dataViewer",
     "roles/bigquery.jobUser",
     "roles/alloydb.client",
+    "roles/alloydb.databaseUser",
+    "roles/serviceusage.serviceUsageConsumer",
   ])
   project = var.project_id
   role    = each.key
