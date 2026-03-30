@@ -1,14 +1,23 @@
 import { NextRequest } from 'next/server';
 import { GET } from '../route';
 
-// Mock @google-cloud/vertexai
-jest.mock('@google-cloud/vertexai', () => ({
-  VertexAI: jest.fn().mockImplementation(() => ({
-    getGenerativeModel: jest.fn().mockReturnValue({
+// Mock google-auth-library
+jest.mock('google-auth-library', () => ({
+  GoogleAuth: jest.fn().mockImplementation(() => ({
+    getClient: jest.fn().mockResolvedValue({
+      getAccessToken: jest.fn().mockResolvedValue({ token: 'mock-token' })
+    })
+  }))
+}));
+
+// Mock @google/genai
+jest.mock('@google/genai', () => ({
+  createClient: jest.fn().mockImplementation(() => ({
+    models: {
       embedContent: jest.fn().mockResolvedValue({
         embeddings: [{ values: [0.1, 0.2, 0.3] }]
       })
-    })
+    }
   }))
 }));
 

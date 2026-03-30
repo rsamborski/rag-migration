@@ -1,24 +1,28 @@
 import { generateEmbedding } from '../embeddings';
 
-// Mock the global process.env before importing the module
+// Mock process.env
 process.env.PROJECT_ID = 'test-project';
-process.env.LOCATION = 'us-central1';
-process.env.EMBEDDING_MODEL = 'test-model';
+process.env.LOCATION = 'europe-central2';
 
-// Mock the @google-cloud/vertexai library
-jest.mock('@google-cloud/vertexai', () => {
-  const mockEmbedContent = jest.fn().mockResolvedValue({
-    embeddings: [{ values: [0.1, 0.2, 0.3] }]
-  });
+// Mock google-auth-library
+jest.mock('google-auth-library', () => ({
+  GoogleAuth: jest.fn().mockImplementation(() => ({
+    getClient: jest.fn().mockResolvedValue({
+      getAccessToken: jest.fn().mockResolvedValue({ token: 'mock-token' })
+    })
+  }))
+}));
 
-  return {
-    VertexAI: jest.fn().mockImplementation(() => ({
-      getGenerativeModel: jest.fn().mockReturnValue({
-        embedContent: mockEmbedContent
+// Mock @google/genai
+jest.mock('@google/genai', () => ({
+  createClient: jest.fn().mockImplementation(() => ({
+    models: {
+      embedContent: jest.fn().mockResolvedValue({
+        embeddings: [{ values: [0.1, 0.2, 0.3] }]
       })
-    }))
-  };
-});
+    }
+  }))
+}));
 
 describe('Embeddings Utility', () => {
   it('should return an array of numbers representing the embedding', async () => {
@@ -26,7 +30,7 @@ describe('Embeddings Utility', () => {
     const embedding = await generateEmbedding(text);
     
     expect(Array.isArray(embedding)).toBe(true);
-    expect(embedding.length).toBeGreaterThan(0);
+    expect(embedding.length).toBe(3);
     expect(embedding[0]).toBe(0.1);
   });
 

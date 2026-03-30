@@ -10,7 +10,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@google-cloud/vertexai": "^1.10.3",
+    "@google/genai": "^1.47.0",
+    "google-auth-library": "^10.6.2",
     "next": "16.2.1",
     "pg": "^8.20.0",
     "pgvector": "^0.2.1",
