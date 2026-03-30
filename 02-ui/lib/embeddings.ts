@@ -1,4 +1,4 @@
-import { createClient } from '@google/genai';
+import { GoogleGenAI } from '@google/genai';
 import { GoogleAuth } from 'google-auth-library';
 
 // Function to generate the bearer token programmatically
@@ -23,7 +23,7 @@ export async function generateEmbedding(text: string): Promise<number[]> {
 
   const project = process.env.PROJECT_ID || 'rsamborski-rag';
   const location = process.env.LOCATION || 'europe-central2';
-  const modelId = process.env.EMBEDDING_MODEL || 'text-embedding-004'; // Default to stable 004 if 005 not found
+  const modelId = process.env.EMBEDDING_MODEL || 'text-embedding-004';
 
   const token = await getAccessToken();
 
@@ -32,10 +32,15 @@ export async function generateEmbedding(text: string): Promise<number[]> {
   }
 
   // Initialize the Gen AI client for Vertex AI
-  const client = createClient({
-    vertexai: true,
+  const client = new GoogleGenAI({
     project,
     location,
+    apiSpec: {
+      authType: 'ACCESS_TOKEN',
+      baseUrls: {
+        'vertexai': `https://${location}-aiplatform.googleapis.com`
+      }
+    },
     httpOptions: {
       headers: {
         'Authorization': `Bearer ${token}`
@@ -43,7 +48,7 @@ export async function generateEmbedding(text: string): Promise<number[]> {
     }
   });
 
-  const response = await client.models.embedContent({
+  const response = await client.Models.embedContent({
     model: modelId,
     contents: [text],
     config: {

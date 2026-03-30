@@ -12,8 +12,8 @@ jest.mock('google-auth-library', () => ({
 
 // Mock @google/genai
 jest.mock('@google/genai', () => ({
-  createClient: jest.fn().mockImplementation(() => ({
-    models: {
+  GoogleGenAI: jest.fn().mockImplementation(() => ({
+    Models: {
       embedContent: jest.fn().mockResolvedValue({
         embeddings: [{ values: [0.1, 0.2, 0.3] }]
       })
