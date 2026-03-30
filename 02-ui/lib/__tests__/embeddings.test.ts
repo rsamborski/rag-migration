@@ -1,22 +1,13 @@
 import { generateEmbedding } from '../embeddings';
 
 // Mock process.env
-process.env.PROJECT_ID = 'test-project';
-process.env.LOCATION = 'europe-central2';
-
-// Mock google-auth-library
-jest.mock('google-auth-library', () => ({
-  GoogleAuth: jest.fn().mockImplementation(() => ({
-    getClient: jest.fn().mockResolvedValue({
-      getAccessToken: jest.fn().mockResolvedValue({ token: 'mock-token' })
-    })
-  }))
-}));
+process.env.GOOGLE_CLOUD_PROJECT = 'test-project';
+process.env.GOOGLE_CLOUD_LOCATION = 'europe-central2';
 
 // Mock @google/genai
 jest.mock('@google/genai', () => ({
   GoogleGenAI: jest.fn().mockImplementation(() => ({
-    Models: {
+    models: {
       embedContent: jest.fn().mockResolvedValue({
         embeddings: [{ values: [0.1, 0.2, 0.3] }]
       })

@@ -1,19 +1,10 @@
 import { NextRequest } from 'next/server';
 import { GET } from '../route';
 
-// Mock google-auth-library
-jest.mock('google-auth-library', () => ({
-  GoogleAuth: jest.fn().mockImplementation(() => ({
-    getClient: jest.fn().mockResolvedValue({
-      getAccessToken: jest.fn().mockResolvedValue({ token: 'mock-token' })
-    })
-  }))
-}));
-
 // Mock @google/genai
 jest.mock('@google/genai', () => ({
   GoogleGenAI: jest.fn().mockImplementation(() => ({
-    Models: {
+    models: {
       embedContent: jest.fn().mockResolvedValue({
         embeddings: [{ values: [0.1, 0.2, 0.3] }]
       })
@@ -32,7 +23,7 @@ jest.mock('pg', () => ({
 describe('Search API Integration', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    process.env.PROJECT_ID = 'test-project';
+    process.env.GOOGLE_CLOUD_PROJECT = 'test-project';
     process.env.DB_NAME = 'test-db';
   });
 

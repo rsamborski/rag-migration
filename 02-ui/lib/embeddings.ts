@@ -1,15 +1,4 @@
 import { GoogleGenAI } from '@google/genai';
-import { GoogleAuth } from 'google-auth-library';
-
-// Function to generate the bearer token programmatically
-async function getAccessToken() {
-  const auth = new GoogleAuth({
-    scopes: 'https://www.googleapis.com/auth/cloud-platform'
-  });
-  const client = await auth.getClient();
-  const tokenResponse = await client.getAccessToken();
-  return tokenResponse.token;
-}
 
 /**
  * Generates text embeddings for a given query string using Google Vertex AI.
@@ -21,34 +10,20 @@ export async function generateEmbedding(text: string): Promise<number[]> {
     throw new Error('Text input is required');
   }
 
-  const project = process.env.PROJECT_ID || 'rsamborski-rag';
-  const location = process.env.LOCATION || 'europe-central2';
+  // Prioritize PROJECT_ID and LOCATION from the .env file over global environment variables
+  const project = process.env.PROJECT_ID || process.env.GOOGLE_CLOUD_PROJECT || 'rsamborski-rag';
+  const location = process.env.LOCATION || process.env.GOOGLE_CLOUD_LOCATION || 'us-central1';
   const modelId = process.env.EMBEDDING_MODEL || 'text-embedding-004';
 
-  const token = await getAccessToken();
-
-  if (!token) {
-    throw new Error('Failed to obtain authentication token');
-  }
-
-  // Initialize the Gen AI client for Vertex AI
+  // Initialize the Gen AI client for Vertex AI using the unified SDK.
+  // It automatically handles authentication via Application Default Credentials (ADC).
   const client = new GoogleGenAI({
+    vertexai: true,
     project,
     location,
-    apiSpec: {
-      authType: 'ACCESS_TOKEN',
-      baseUrls: {
-        'vertexai': `https://${location}-aiplatform.googleapis.com`
-      }
-    },
-    httpOptions: {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    }
   });
 
-  const response = await client.Models.embedContent({
+  const response = await client.models.embedContent({
     model: modelId,
     contents: [text],
     config: {
