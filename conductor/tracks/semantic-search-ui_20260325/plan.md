@@ -12,7 +12,7 @@
 - [x] Task: Create embeddings utility to handle Vertex AI text embedding generation 31f4d7e
 - [x] Task: Write tests for the embeddings generation utility 31f4d7e
 - [x] Task: Implement Next.js API Route (`app/api/search/route.ts`) to orchestrate embedding generation and AlloyDB vector search 88aab08
-- [ ] Task: Write integration tests for the search API route
+- [x] Task: Write integration tests for the search API route cd8b7f5
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Backend (API) Development' (Protocol in workflow.md)
 
 ## Phase 3: Frontend (UI) Development
