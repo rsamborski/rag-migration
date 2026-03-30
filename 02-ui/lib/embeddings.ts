@@ -1,8 +1,8 @@
-import { GoogleGenAI } from '@google/genai';
+import { VertexAI } from '@google-cloud/vertexai';
 
-// Initialize the Google Gen AI client specifically for Vertex AI
-const client = new GoogleGenAI({
-  project: process.env.PROJECT_ID,
+// Initialize Vertex AI with the project and location
+const vertex_ai = new VertexAI({
+  project: process.env.PROJECT_ID || 'rsamborski-rag',
   location: process.env.LOCATION || 'europe-central2',
 });
 
@@ -17,18 +17,22 @@ export async function generateEmbedding(text: string): Promise<number[]> {
   }
 
   const modelId = process.env.EMBEDDING_MODEL || 'text-embedding-005';
-
-  const response = await client.models.embedContent({
+  
+  const generativeModel = vertex_ai.getGenerativeModel({
     model: modelId,
-    contents: text,
-    config: {
-      taskType: 'RETRIEVAL_QUERY',
-    },
   });
 
-  if (!response.embeddings || response.embeddings.length === 0 || !response.embeddings[0].values) {
+  const request = {
+    content: [{ role: 'user', parts: [{ text }] }],
+    taskType: 'RETRIEVAL_QUERY' as any, // Cast as any because taskType might not be in the base type but supported by endpoint
+  };
+
+  const response = await generativeModel.embedContent(request);
+  const embedding = response.embeddings[0];
+
+  if (!embedding || !embedding.values) {
     throw new Error('Failed to generate embeddings from Vertex AI');
   }
 
-  return response.embeddings[0].values;
+  return embedding.values;
 }

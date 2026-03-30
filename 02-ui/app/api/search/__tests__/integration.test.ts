@@ -1,14 +1,14 @@
 import { NextRequest } from 'next/server';
 import { GET } from '../route';
 
-// Mock @google/genai
-jest.mock('@google/genai', () => ({
-  GoogleGenAI: jest.fn().mockImplementation(() => ({
-    models: {
+// Mock @google-cloud/vertexai
+jest.mock('@google-cloud/vertexai', () => ({
+  VertexAI: jest.fn().mockImplementation(() => ({
+    getGenerativeModel: jest.fn().mockReturnValue({
       embedContent: jest.fn().mockResolvedValue({
         embeddings: [{ values: [0.1, 0.2, 0.3] }]
       })
-    }
+    })
   }))
 }));
 

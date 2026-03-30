@@ -5,20 +5,18 @@ process.env.PROJECT_ID = 'test-project';
 process.env.LOCATION = 'us-central1';
 process.env.EMBEDDING_MODEL = 'test-model';
 
-// We need to mock the @google/genai library to avoid making real API calls during unit tests
-jest.mock('@google/genai', () => {
+// Mock the @google-cloud/vertexai library
+jest.mock('@google-cloud/vertexai', () => {
+  const mockEmbedContent = jest.fn().mockResolvedValue({
+    embeddings: [{ values: [0.1, 0.2, 0.3] }]
+  });
+
   return {
-    GoogleGenAI: jest.fn().mockImplementation(() => {
-      return {
-        models: {
-          embedContent: jest.fn().mockResolvedValue({
-            embeddings: [
-              { values: [0.1, 0.2, 0.3] }
-            ]
-          })
-        }
-      };
-    })
+    VertexAI: jest.fn().mockImplementation(() => ({
+      getGenerativeModel: jest.fn().mockReturnValue({
+        embedContent: mockEmbedContent
+      })
+    }))
   };
 });
 
