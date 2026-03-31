@@ -16,8 +16,8 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Backend (API) Development' (Protocol in workflow.md) 3e0431a
 
 ## Phase 3: Frontend (UI) Development
-- [ ] Task: Create custom hook for managing search state (query, results, loading, error)
-- [ ] Task: Write tests for the search state management logic
+- [x] Task: Create custom hook for managing search state (query, results, loading, error) 3a82d49
+- [x] Task: Write tests for the search state management logic 3a82d49
 - [ ] Task: Implement the `SearchBar` component
 - [ ] Task: Write component tests for `SearchBar`
 - [ ] Task: Implement the `SearchResultList` component (List View showing Name, Category, Brand)
