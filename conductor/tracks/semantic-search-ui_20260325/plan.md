@@ -22,5 +22,5 @@
 - [x] Task: Write component tests for `SearchBar` 1bf2497
 - [x] Task: Implement the `SearchResultList` component (List View showing Name, Category, Brand) bde066d
 - [x] Task: Write component tests for `SearchResultList` bde066d
-- [~] Task: Assemble the main layout in `app/page.tsx` integrating the search components
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Frontend (UI) Development' (Protocol in workflow.md)
+- [x] Task: Assemble the main layout in `app/page.tsx` integrating the search components 2db19dd
+- [~] Task: Conductor - User Manual Verification 'Phase 3: Frontend (UI) Development' (Protocol in workflow.md)
