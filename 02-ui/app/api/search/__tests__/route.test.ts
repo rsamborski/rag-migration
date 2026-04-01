@@ -63,7 +63,7 @@ describe('Search API Route', () => {
 
     expect(response.status).toBe(500);
     const data = await response.json();
-    expect(data.error).toBe('Vertex AI error');
+    expect(data.error).toBe('A problem occurred with the AI embedding service. Please try again later.');
   });
 
   it('should return 500 if the database query fails', async () => {
@@ -75,6 +75,20 @@ describe('Search API Route', () => {
 
     expect(response.status).toBe(500);
     const data = await response.json();
-    expect(data.error).toBe('Database error');
+    expect(data.error).toBe('An unexpected error occurred during your search.');
+  });
+
+  it('should return 500 if the database connection fails (ECONNREFUSED)', async () => {
+    (generateEmbedding as jest.Mock).mockResolvedValue([0.1]);
+    const error = new Error('connect ECONNREFUSED 127.0.0.1:5434');
+    (error as any).code = 'ECONNREFUSED';
+    mockPool.query.mockRejectedValue(error);
+    
+    const req = new NextRequest('http://localhost:3000/api/search?q=test');
+    const response = await GET(req);
+
+    expect(response.status).toBe(500);
+    const data = await response.json();
+    expect(data.error).toBe('Unable to connect to the database. Please ensure the database proxy is running.');
   });
 });

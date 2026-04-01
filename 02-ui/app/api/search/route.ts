@@ -33,8 +33,17 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ results: result.rows });
   } catch (error: any) {
     console.error('Search API error:', error);
+    
+    let errorMessage = 'An unexpected error occurred during your search.';
+    
+    if (error.code === 'ECONNREFUSED' || error.message?.includes('connect ECONNREFUSED')) {
+      errorMessage = 'Unable to connect to the database. Please ensure the database proxy is running.';
+    } else if (error.message?.includes('Vertex AI')) {
+      errorMessage = 'A problem occurred with the AI embedding service. Please try again later.';
+    }
+
     return NextResponse.json(
-      { error: error.message || 'Internal Server Error' },
+      { error: errorMessage },
       { status: 500 }
     );
   }
