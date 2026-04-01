@@ -16,7 +16,8 @@ This document outlines the key technologies chosen for the RAG Embedding Migrati
 ## 3. Frontend
 
 *   **Web Framework:** **Next.js**
-    *   **Rationale:** A simple, modern web UI will be built with Next.js to provide an interactive demonstration of the final RAG system's capabilities. This allows stakeholders to easily test and verify the semantic search functionality against the migrated data.
+    *   **Implementation:** Next.js with App Router, TypeScript, and Tailwind CSS.
+    *   **Rationale:** Provides a fast, type-safe, and responsive development experience. The App Router and API Routes simplify the orchestration between the UI and the vector database. This allows stakeholders to easily test and verify the semantic search functionality against the migrated data.
 
 ## 4. Data Source
 
