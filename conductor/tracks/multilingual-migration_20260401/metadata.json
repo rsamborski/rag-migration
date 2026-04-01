@@ -1,0 +1,8 @@
+{
+  "track_id": "multilingual-migration_20260401",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-01T12:00:00Z",
+  "updated_at": "2026-04-01T12:00:00Z",
+  "description": "Migration of the currently used embeddings model to gemini-embedding-001 (multilingual). Includes new columns in AlloyDB and UI toggle for testing."
+}
