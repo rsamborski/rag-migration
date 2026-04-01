@@ -9,5 +9,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Semantic Search UI**
+- [x] **Track: Semantic Search UI**
   *Link: [./tracks/semantic-search-ui_20260325/](./tracks/semantic-search-ui_20260325/)*
