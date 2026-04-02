@@ -2,7 +2,7 @@
 
 ## Phase 1: Database and Environment Preparation
 - [x] Task: Add `embedding_v2` column to the `products` table in AlloyDB using SQL script [2bfd35d]
-- [ ] Task: Update environment variables to include the new model name (`gemini-embedding-001`) and dimension (768)
+- [x] Task: Update environment variables to include the new model name (`gemini-embedding-001`) and dimension (768) [ba99213]
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Database and Environment Preparation' (Protocol in workflow.md)
 
 ## Phase 2: Migration Job Development (Python)
