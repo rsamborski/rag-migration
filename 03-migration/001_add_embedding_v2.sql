@@ -1,0 +1,1 @@
+ALTER TABLE products ADD COLUMN IF NOT EXISTS embedding_v2 VECTOR(768);
