@@ -10,7 +10,7 @@
 - [x] Task: Write tests for the updated embedder utility in `03-migration/tests/test_embedder.py` [1b1ee5d]
 - [x] Task: Create a new migration script/orchestrator `03-migration/src/migration_orchestrator.py` for batch re-embedding [1709d9a]
 - [x] Task: Write tests for the migration orchestrator in `03-migration/tests/test_migration_orchestrator.py` [1709d9a]
-- [ ] Task: Update Dockerfile and Cloud Run Job configuration for the migration job in `03-migration/`
+- [x] Task: Update Dockerfile and Cloud Run Job configuration for the migration job in `03-migration/` [7f4ab5a]
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Migration Job Development (Python)' (Protocol in workflow.md)
 
 ## Phase 3: Backend API Updates (Next.js)
