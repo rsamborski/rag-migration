@@ -7,6 +7,7 @@ ENV UV_LINK_MODE=copy
 
 # Copy dependency files and install them
 COPY pyproject.toml /app/
+COPY uv.lock /app/
 RUN uv sync --frozen --no-install-project --no-dev
 
 # Add source code
@@ -23,5 +24,5 @@ ENV PATH="/app/.venv/bin:$PATH"
 WORKDIR /app
 ENV PYTHONPATH="/app"
 
-# Default command runs the migration orchestrator
-CMD ["python", "src/migration_orchestrator.py"]
+# Default command runs the migration worker (one task)
+CMD ["python", "src/main.py"]

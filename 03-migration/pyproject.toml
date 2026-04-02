@@ -13,4 +13,6 @@ dependencies = [
     "pytest>=9.0.2",
     "pytest-cov>=7.0.0",
     "sqlalchemy>=2.0.48",
+    "pyopenssl>=23.0.0",
+    "cryptography>=41.0.0",
 ]

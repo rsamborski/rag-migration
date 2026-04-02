@@ -5,8 +5,8 @@ set -e
 export PROJECT_ID="${PROJECT_ID:-rsamborski-rag}"
 export REGION="${REGION:-europe-central2}"
 export REPO_NAME="${REPO_NAME:-rag-migration-repo}"
-export IMAGE_NAME="${IMAGE_NAME:-gemini-migration-job}"
-export JOB_NAME="${JOB_NAME:-gemini-migration-job}"
+export IMAGE_NAME="${IMAGE_NAME:-rag-migration-job}"
+export JOB_NAME="${JOB_NAME:-rag-migration-job}"
 
 # Full Image URL
 export IMAGE_URL="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/${IMAGE_NAME}:latest"
