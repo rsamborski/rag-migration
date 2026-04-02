@@ -1,7 +1,7 @@
 # Implementation Plan: Embedding Migration to Gemini Unified Model (gemini-embedding-001)
 
 ## Phase 1: Database and Environment Preparation
-- [ ] Task: Add `embedding_v2` column to the `products` table in AlloyDB using SQL script
+- [x] Task: Add `embedding_v2` column to the `products` table in AlloyDB using SQL script [2bfd35d]
 - [ ] Task: Update environment variables to include the new model name (`gemini-embedding-001`) and dimension (768)
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Database and Environment Preparation' (Protocol in workflow.md)
 
