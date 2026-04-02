@@ -6,11 +6,11 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Database and Environment Preparation' (Protocol in workflow.md) [dcaf8db]
 
 ## Phase 2: Migration Job Development (Python)
-- [ ] Task: Update `01-generation/src/embedder.py` to support `gemini-embedding-001` and configurable dimensions
-- [ ] Task: Write tests for the updated embedder utility
-- [ ] Task: Create a new migration script/orchestrator `01-generation/migration_orchestrator.py` for batch re-embedding
-- [ ] Task: Write tests for the migration orchestrator
-- [ ] Task: Update Dockerfile and Cloud Run Job configuration for the migration job
+- [x] Task: Create `03-migration/src/embedder.py` to support `gemini-embedding-001` and configurable dimensions [1b1ee5d]
+- [x] Task: Write tests for the updated embedder utility in `03-migration/tests/test_embedder.py` [1b1ee5d]
+- [ ] Task: Create a new migration script/orchestrator `03-migration/src/migration_orchestrator.py` for batch re-embedding
+- [ ] Task: Write tests for the migration orchestrator in `03-migration/tests/test_migration_orchestrator.py`
+- [ ] Task: Update Dockerfile and Cloud Run Job configuration for the migration job in `03-migration/`
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Migration Job Development (Python)' (Protocol in workflow.md)
 
 ## Phase 3: Backend API Updates (Next.js)
