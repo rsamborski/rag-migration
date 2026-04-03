@@ -16,9 +16,9 @@
 ## Phase 3: Backend API Updates (Next.js)
 - [x] Task: Update `02-ui/lib/embeddings.ts` to support `gemini-embedding-001` with MRL (768 dimensions) [8f8b8fc]
 - [x] Task: Write tests for the updated embeddings utility [8f8b8fc]
-- [~] Task: Modify `02-ui/app/api/search/route.ts` to accept a `model` parameter and switch between models/columns
-- [ ] Task: Write integration tests for the updated search API route
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Backend API Updates (Next.js)' (Protocol in workflow.md)
+- [x] Task: Modify `02-ui/app/api/search/route.ts` to accept a `model` parameter and switch between models/columns [bb28c4b]
+- [x] Task: Write integration tests for the updated search API route [bb28c4b]
+- [~] Task: Conductor - User Manual Verification 'Phase 3: Backend API Updates (Next.js)' (Protocol in workflow.md)
 
 ## Phase 4: Frontend UI Updates (Next.js)
 - [ ] Task: Create a `ModelSwitcher` component to toggle between original and Gemini models
