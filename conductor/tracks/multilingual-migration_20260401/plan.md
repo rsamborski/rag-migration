@@ -20,9 +20,9 @@
 - [x] Task: Write integration tests for the updated search API route [bb28c4b]
 - [x] Task: Conductor - User Manual Verification 'Phase 3: Backend API Updates (Next.js)' (Protocol in workflow.md) [manual]
 
-## Phase 4: Frontend UI Updates (Next.js)
+## Phase 4: Frontend UI Updates (Next.js) [checkpoint: 0b74298]
 - [x] Task: Create a `ModelSwitcher` component to toggle between original and Gemini models [f2f1143]
 - [x] Task: Write component tests for `ModelSwitcher` [f2f1143]
 - [x] Task: Integrate `ModelSwitcher` into the main layout and update `useSearch` hook to pass the model state [6039266]
 - [x] Task: Write tests for the updated search state management [6039266]
-- [~] Task: Conductor - User Manual Verification 'Phase 4: Frontend UI Updates (Next.js)' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 4: Frontend UI Updates (Next.js)' (Protocol in workflow.md) [manual]
