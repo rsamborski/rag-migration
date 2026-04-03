@@ -6,6 +6,7 @@ export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const query = searchParams.get('q');
+    const modelParam = searchParams.get('model');
 
     if (!query) {
       return NextResponse.json(
@@ -14,15 +15,25 @@ export async function GET(req: NextRequest) {
       );
     }
 
+    let modelId: string | undefined;
+    let dimensions: number | undefined;
+    let column = 'embedding';
+
+    if (modelParam === 'gemini') {
+      modelId = 'gemini-embedding-001';
+      dimensions = 768;
+      column = 'embedding_v2';
+    }
+
     // 1. Generate embedding for the query
-    const embedding = await generateEmbedding(query);
+    const embedding = await generateEmbedding(query, modelId, dimensions);
     const embeddingString = `[${embedding.join(',')}]`;
 
     // 2. Query AlloyDB using pgvector similarity search
     const pool = getDbPool();
     const result = await pool.query(
       `SELECT id, name, category, brand, 
-              (embedding <=> $1) as distance
+              (${column} <=> $1) as distance
        FROM products
        ORDER BY distance ASC
        LIMIT 10`,

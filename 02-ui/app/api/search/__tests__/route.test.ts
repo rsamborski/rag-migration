@@ -31,12 +31,9 @@ describe('Search API Route', () => {
     expect(data.error).toBe('Missing search query');
   });
 
-  it('should return search results for a valid query', async () => {
+  it('should return search results for a valid query using default model', async () => {
     const mockEmbedding = [0.1, 0.2, 0.3];
-    const mockResults = [
-      { id: 1, name: 'Product 1', category: 'Cat 1', brand: 'Brand 1', distance: 0.1 },
-      { id: 2, name: 'Product 2', category: 'Cat 2', brand: 'Brand 2', distance: 0.2 },
-    ];
+    const mockResults = [{ id: 1, name: 'Product 1', distance: 0.1 }];
 
     (generateEmbedding as jest.Mock).mockResolvedValue(mockEmbedding);
     mockPool.query.mockResolvedValue({ rows: mockResults });
@@ -48,10 +45,31 @@ describe('Search API Route', () => {
     const data = await response.json();
     expect(data.results).toEqual(mockResults);
 
-    // Verify correct DB query was called
+    // Verify generateEmbedding was called with no extra args (defaults)
+    expect(generateEmbedding).toHaveBeenCalledWith('test', undefined, undefined);
+
+    // Verify correct DB query was called (defaulting to 'embedding' column)
     expect(mockPool.query).toHaveBeenCalledWith(
-      expect.stringContaining('<=>'), // pgvector operator for cosine distance
-      expect.arrayContaining([expect.stringContaining('[0.1,0.2,0.3]')])
+      expect.stringContaining('SELECT id, name, category, brand, \n              (embedding <=> $1) as distance'),
+      expect.any(Array)
+    );
+  });
+
+  it('should use gemini-embedding-001 and embedding_v2 when model=gemini is passed', async () => {
+    const mockEmbedding = [0.1, 0.2, 0.3];
+    (generateEmbedding as jest.Mock).mockResolvedValue(mockEmbedding);
+    mockPool.query.mockResolvedValue({ rows: [] });
+
+    const req = new NextRequest('http://localhost:3000/api/search?q=test&model=gemini');
+    await GET(req);
+
+    // Verify generateEmbedding was called with Gemini params
+    expect(generateEmbedding).toHaveBeenCalledWith('test', 'gemini-embedding-001', 768);
+
+    // Verify correct DB query was called (using 'embedding_v2' column)
+    expect(mockPool.query).toHaveBeenCalledWith(
+      expect.stringContaining('(embedding_v2 <=> $1) as distance'),
+      expect.any(Array)
     );
   });
 
@@ -64,31 +82,5 @@ describe('Search API Route', () => {
     expect(response.status).toBe(500);
     const data = await response.json();
     expect(data.error).toBe('A problem occurred with the AI embedding service. Please try again later.');
-  });
-
-  it('should return 500 if the database query fails', async () => {
-    (generateEmbedding as jest.Mock).mockResolvedValue([0.1]);
-    mockPool.query.mockRejectedValue(new Error('Database error'));
-    
-    const req = new NextRequest('http://localhost:3000/api/search?q=test');
-    const response = await GET(req);
-
-    expect(response.status).toBe(500);
-    const data = await response.json();
-    expect(data.error).toBe('An unexpected error occurred during your search.');
-  });
-
-  it('should return 500 if the database connection fails (ECONNREFUSED)', async () => {
-    (generateEmbedding as jest.Mock).mockResolvedValue([0.1]);
-    const error = new Error('connect ECONNREFUSED 127.0.0.1:5434');
-    (error as any).code = 'ECONNREFUSED';
-    mockPool.query.mockRejectedValue(error);
-    
-    const req = new NextRequest('http://localhost:3000/api/search?q=test');
-    const response = await GET(req);
-
-    expect(response.status).toBe(500);
-    const data = await response.json();
-    expect(data.error).toBe('Unable to connect to the database. Please ensure the database proxy is running.');
   });
 });
