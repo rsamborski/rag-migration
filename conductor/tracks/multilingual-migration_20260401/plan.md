@@ -13,12 +13,12 @@
 - [x] Task: Update Dockerfile and Cloud Run Job configuration for the migration job in `03-migration/` [7f4ab5a]
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Migration Job Development (Python)' (Protocol in workflow.md) [manual]
 
-## Phase 3: Backend API Updates (Next.js)
+## Phase 3: Backend API Updates (Next.js) [checkpoint: d4e139a]
 - [x] Task: Update `02-ui/lib/embeddings.ts` to support `gemini-embedding-001` with MRL (768 dimensions) [8f8b8fc]
 - [x] Task: Write tests for the updated embeddings utility [8f8b8fc]
 - [x] Task: Modify `02-ui/app/api/search/route.ts` to accept a `model` parameter and switch between models/columns [bb28c4b]
 - [x] Task: Write integration tests for the updated search API route [bb28c4b]
-- [~] Task: Conductor - User Manual Verification 'Phase 3: Backend API Updates (Next.js)' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Backend API Updates (Next.js)' (Protocol in workflow.md) [manual]
 
 ## Phase 4: Frontend UI Updates (Next.js)
 - [ ] Task: Create a `ModelSwitcher` component to toggle between original and Gemini models
