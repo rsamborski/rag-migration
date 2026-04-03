@@ -9,7 +9,8 @@ Upgrading core embedding infrastructure without downtime or regressions is a sig
 The project is structured as a series of steps (or phases), each building upon the last:
 
 1.  **Initial Generation (`01-generation/`)**: (COMPLETED) Fully functional pipeline that ingests raw product data from BigQuery, generates initial embeddings using `text-embedding-004` (via `google-genai` SDK), and stores them in a highly-available AlloyDB for PostgreSQL vector database. Highly parallelizable execution using Cloud Run Jobs.
-2.  *(Future phases will cover semantic search UI, evaluation frameworks, and the actual zero-downtime migration process.)*
+2.  **Semantic Search UI (`02-ui/`)**: A Next.js application to demonstrate semantic search capabilities using the generated embeddings.
+3.  **Embedding Migration (`03-migration/`)**: Tools and scripts supporting batch migration of embeddings to a newer model (`gemini-embedding-001`).
 
 ## Technical Stack
 
@@ -22,3 +23,11 @@ The project is structured as a series of steps (or phases), each building upon t
 ## Getting Started
 
 To get started, navigate to the `01-generation` directory and follow the instructions in its specific README to deploy the initial embedding pipeline.
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
+
+## Disclaimer
+
+This is not an officially supported Google product.

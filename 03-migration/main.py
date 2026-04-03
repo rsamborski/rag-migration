@@ -9,18 +9,18 @@ from src.embedder import generate_embeddings
 def init_db_engine() -> sqlalchemy.engine.Engine:
     """Initializes and returns a SQLAlchemy engine connected to AlloyDB."""
 
-    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT", "rsamborski-rag")
-    region = "europe-central2"
-    cluster = "rag-migration-cluster"
-    instance = "rag-migration-instance"
+    project_id = os.environ.get("ALLOYDB_PROJECT", os.environ.get("GOOGLE_CLOUD_PROJECT", "rsamborski-rag"))
+    region = os.environ.get("ALLOYDB_REGION", "europe-central2")
+    cluster = os.environ.get("ALLOYDB_CLUSTER", "rag-migration-cluster")
+    instance = os.environ.get("ALLOYDB_INSTANCE", "rag-migration-instance")
 
     inst_uri = f"projects/{project_id}/locations/{region}/clusters/{cluster}/instances/{instance}"
-    user = "postgres"
+    user = os.environ.get("ALLOYDB_USER", "postgres")
     password = os.environ.get("DB_PASSWORD")
     if not password:
         raise ValueError("DB_PASSWORD environment variable is not set.")
         
-    db_name = "rag_migration"
+    db_name = os.environ.get("ALLOYDB_DATABASE", "rag_migration")
 
     connector = Connector()
 
