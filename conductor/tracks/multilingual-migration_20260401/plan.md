@@ -14,9 +14,9 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Migration Job Development (Python)' (Protocol in workflow.md) [manual]
 
 ## Phase 3: Backend API Updates (Next.js)
-- [ ] Task: Update `02-ui/lib/embeddings.ts` to support `gemini-embedding-001` with MRL (768 dimensions)
-- [ ] Task: Write tests for the updated embeddings utility
-- [ ] Task: Modify `02-ui/app/api/search/route.ts` to accept a `model` parameter and switch between models/columns
+- [x] Task: Update `02-ui/lib/embeddings.ts` to support `gemini-embedding-001` with MRL (768 dimensions) [8f8b8fc]
+- [x] Task: Write tests for the updated embeddings utility [8f8b8fc]
+- [~] Task: Modify `02-ui/app/api/search/route.ts` to accept a `model` parameter and switch between models/columns
 - [ ] Task: Write integration tests for the updated search API route
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Backend API Updates (Next.js)' (Protocol in workflow.md)
 
