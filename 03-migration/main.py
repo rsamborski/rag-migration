@@ -62,7 +62,7 @@ def run_worker():
         # Fetch products where embedding_v2 is null, respecting offset
         print(f"Task {task_index}: Fetching batch of {batch_size} products starting at offset {offset}...")
         fetch_stmt = text("""
-            SELECT id, name FROM products 
+            SELECT id, name, category, brand FROM products 
             WHERE embedding_v2 IS NULL
             ORDER BY id
             LIMIT :batch_size OFFSET :offset
@@ -77,7 +77,10 @@ def run_worker():
 
         print(f"Task {task_index}: Found {len(products)} products to re-embed.")
         
-        product_names = [p._mapping["name"] for p in products]
+        product_names = [
+            f"Name: {p._mapping.get('name')}, Category: {p._mapping.get('category')}, Brand: {p._mapping.get('brand')}"
+            for p in products
+        ]
         product_ids = [p._mapping["id"] for p in products]
         
         # Generate embeddings using the new model

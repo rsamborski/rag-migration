@@ -1,6 +1,9 @@
 import os
 import sys
 import math
+
+# Mute false-positive gRPC fork warning logs
+os.environ.setdefault("GRPC_ENABLE_FORK_SUPPORT", "false")
 import time
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
