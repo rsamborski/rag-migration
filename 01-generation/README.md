@@ -21,7 +21,24 @@ The pipeline is decoupled into two main components:
 *   Python 3.13+ and `uv` package manager installed
 *   (Local Testing) AlloyDB Auth Proxy installed
 
-## Deployment & Execution
+## 🧱 Infrastructure Deployment
+
+The `infra/terraform` directory contains configurations to provision necessary networking, APIs, Artifact Registry, and AlloyDB instances.
+
+Apply Terraform to spin up the required cloud resources:
+
+```bash
+cd 01-generation/infra/terraform
+terraform init
+terraform apply -var="project_id=your-project-id" -var="db_password=your-secure-password"
+```
+
+> [!NOTE]
+> For local administrative workflow runs, you will need the [AlloyDB Auth Proxy](https://docs.cloud.google.com/alloydb/docs/auth-proxy/connect) running in another terminal to forward vectors to the AlloyDB instance.
+
+---
+
+## 🚀 Deployment & Execution
 
 The provided shell script `infra/scripts/deploy_and_run.sh` automates the entire process:
 1.  **Builds & Pushes** the Docker image to Artifact Registry.
@@ -65,9 +82,3 @@ chmod +x 01-generation/infra/scripts/deploy_and_run.sh
     # Run all batches at once to process through the whole dataset
     uv run orchestrator.py
     ```
-
-## Infrastructure (Terraform)
-
-The `infra/terraform` directory contains the configuration to provision the necessary networking, APIs, and the AlloyDB cluster/instance. 
-
-Note: When testing locally, you will need the [AlloyDB Auth Proxy](https://docs.cloud.google.com/alloydb/docs/auth-proxy/connect) to connect to the private database instance.

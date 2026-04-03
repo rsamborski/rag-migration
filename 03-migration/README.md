@@ -102,11 +102,13 @@ Runs locally (or in an administrative runner setup) to count products needing mi
 Ensure you have your DB vars set before running the orchestrator:
 ```bash
 export DB_PASSWORD="your-alloydb-password"
+export GOOGLE_CLOUD_PROJECT="your-project-id"
+
 # Optional overrides
 # export BATCH_SIZE=50
 
 # Run orchestrator
-uv run python orchestrator.py
+uv run orchestrator.py
 ```
 
 ### 2. Manual Cloud Run Job Execution

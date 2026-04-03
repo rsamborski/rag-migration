@@ -22,7 +22,7 @@ def test_execute_cloud_run_job():
     mock_client.run_job.return_value = mock_operation
     mock_client.job_path.return_value = "projects/test/locations/europe-central2/jobs/rag-migration-job"
     
-    with patch("orchestrator.run_v2.JobsClient", return_value=mock_client), \
+    with patch("google.cloud.run_v2.JobsClient", return_value=mock_client), \
          patch.dict(os.environ, {"GOOGLE_CLOUD_PROJECT": "test", "GOOGLE_CLOUD_REGION": "europe-central2", "CLOUD_RUN_JOB_NAME": "rag-migration-job"}):
          
          operation = execute_cloud_run_job(tasks_count=5, batch_size=100)

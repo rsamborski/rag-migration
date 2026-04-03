@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Phase 2: Semantic Search UI
 
-## Getting Started
+This is a **Next.js** application offering a visual demonstration of the RAG platform vector search capabilities. It allows running natural language terminology queries directly against our AlloyDB catalog collections.
 
-First, run the development server:
+---
+
+## ✨ Features
+
+*   **Natural Language queries**: Matches concept intents directly against product database text records.
+*   **Vector similarity matching**: Encodes search strings on the fly via Vertex AI API lookups and compares against stored indexes.
+*   **Component suite**: Modern sleek layout backed by Tailwind utility systems.
+
+---
+
+## 🛠️ Prerequisites
+
+*   **Node.js** (v20+ recommended)
+*   `gcloud` SDK installed and configured
+*   A deployed Phase 1 data pipeline generating embedded vectors
+
+---
+
+## ⚙️ Configuration
+
+Fill out environment credentials by copying the provided template:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.template .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Critical variables:
+*   `PROJECT_ID`: Your GCP Sandbox ID.
+*   `DB_PASSWORD`: The AlloyDB password you passed to Terraform init setup.
+*   `DB_HOST`: Point this to `127.0.0.1` when funneling queries through locally running Auth Proxy.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏃 Execution
 
-## Learn More
+1.  **Install project dependencies**:
+    ```bash
+    npm install
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+2.  **Start the Database Tunnel** (Run in separate terminal window):
+    ```bash
+    ./alloydb-auth-proxy projects/<your-project-id>/locations/europe-central2/clusters/rag-migration-cluster/instances/rag-migration-instance
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3.  **Spin up Next.js loop**:
+    ```bash
+    npm run dev
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Navigate to [http://localhost:3000](http://localhost:3000) to play with the matching portal.

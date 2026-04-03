@@ -2,7 +2,6 @@ import os
 import sys
 import math
 import time
-from google.cloud import run_v2
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
 from main import init_db_engine
@@ -21,6 +20,8 @@ def execute_cloud_run_job(tasks_count: int, batch_size: int):
     Triggers the Cloud Run Job with a specific number of tasks.
     Returns the execution name.
     """
+    from google.cloud import run_v2
+    
     project_id = os.environ.get("GOOGLE_CLOUD_PROJECT", "rsamborski-rag")
     region = os.environ.get("GOOGLE_CLOUD_REGION", "europe-central2")
     job_name = os.environ.get("CLOUD_RUN_JOB_NAME", "rag-migration-job")
@@ -55,6 +56,8 @@ def poll_execution(execution_name: str):
     """
     Polls the execution status and displays a progress summary.
     """
+    from google.cloud import run_v2
+    
     client = run_v2.ExecutionsClient()
     
     print(f"\n⏳ Monitoring execution: {execution_name.split('/')[-1]}")

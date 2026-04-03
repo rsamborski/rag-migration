@@ -11,7 +11,7 @@
 - [x] Task: Create a new migration script/orchestrator `03-migration/src/migration_orchestrator.py` for batch re-embedding [1709d9a]
 - [x] Task: Write tests for the migration orchestrator in `03-migration/tests/test_migration_orchestrator.py` [1709d9a]
 - [x] Task: Update Dockerfile and Cloud Run Job configuration for the migration job in `03-migration/` [7f4ab5a]
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Migration Job Development (Python)' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Migration Job Development (Python)' (Protocol in workflow.md) [manual]
 
 ## Phase 3: Backend API Updates (Next.js)
 - [ ] Task: Update `02-ui/lib/embeddings.ts` to support `gemini-embedding-001` with MRL (768 dimensions)
