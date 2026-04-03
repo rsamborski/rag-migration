@@ -23,6 +23,6 @@
 ## Phase 4: Frontend UI Updates (Next.js)
 - [x] Task: Create a `ModelSwitcher` component to toggle between original and Gemini models [f2f1143]
 - [x] Task: Write component tests for `ModelSwitcher` [f2f1143]
-- [~] Task: Integrate `ModelSwitcher` into the main layout and update `useSearch` hook to pass the model state
-- [ ] Task: Write tests for the updated search state management
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: Frontend UI Updates (Next.js)' (Protocol in workflow.md)
+- [x] Task: Integrate `ModelSwitcher` into the main layout and update `useSearch` hook to pass the model state [6039266]
+- [x] Task: Write tests for the updated search state management [6039266]
+- [~] Task: Conductor - User Manual Verification 'Phase 4: Frontend UI Updates (Next.js)' (Protocol in workflow.md)
