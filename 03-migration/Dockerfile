@@ -25,4 +25,4 @@ WORKDIR /app
 ENV PYTHONPATH="/app"
 
 # Default command runs the migration worker (one task)
-CMD ["python", "src/main.py"]
+CMD ["python", "main.py"]

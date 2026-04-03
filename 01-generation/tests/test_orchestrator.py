@@ -35,12 +35,16 @@ def test_poll_execution_success():
     mock_exec_running = MagicMock()
     mock_exec_running.succeeded_count = 1
     mock_exec_running.task_count = 2
-    mock_exec_running.conditions = [MagicMock(type="Ready", status="Unknown")]
+    mock_cond_running = MagicMock(type="Completed")
+    mock_cond_running.state.name = "CONDITION_RUNNING"
+    mock_exec_running.conditions = [mock_cond_running]
 
     mock_exec_done = MagicMock()
     mock_exec_done.succeeded_count = 2
     mock_exec_done.task_count = 2
-    mock_exec_done.conditions = [MagicMock(type="Ready", status="True")]
+    mock_cond_done = MagicMock(type="Completed")
+    mock_cond_done.state.name = "CONDITION_SUCCEEDED"
+    mock_exec_done.conditions = [mock_cond_done]
 
     mock_client.get_execution.side_effect = [mock_exec_running, mock_exec_done]
 

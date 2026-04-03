@@ -1,7 +1,7 @@
 import pytest
 import os
 from unittest.mock import MagicMock, patch
-from src.main import run_worker
+from main import run_worker
 
 def test_run_worker_success():
     # Mock data from DB (products without embedding_v2)
@@ -27,9 +27,9 @@ def test_run_worker_success():
     mock_sessionmaker = MagicMock(return_value=mock_session)
 
     with patch.dict(os.environ, {"CLOUD_RUN_TASK_INDEX": "1", "BATCH_SIZE": "2"}), \
-         patch("src.main.init_db_engine", return_value=mock_engine), \
-         patch("src.main.sessionmaker", return_value=mock_sessionmaker), \
-         patch("src.main.generate_embeddings", return_value=mock_embeddings) as mock_gen_embed:
+         patch("main.init_db_engine", return_value=mock_engine), \
+         patch("main.sessionmaker", return_value=mock_sessionmaker), \
+         patch("main.generate_embeddings", return_value=mock_embeddings) as mock_gen_embed:
         
         mock_session.__enter__.return_value = mock_session
         
@@ -50,9 +50,9 @@ def test_run_worker_no_products():
     mock_session.execute.return_value = MagicMock(all=lambda: [])
     mock_sessionmaker = MagicMock(return_value=mock_session)
     
-    with patch("src.main.init_db_engine"), \
-         patch("src.main.sessionmaker", return_value=mock_sessionmaker), \
-         patch("src.main.generate_embeddings") as mock_gen_embed:
+    with patch("main.init_db_engine"), \
+         patch("main.sessionmaker", return_value=mock_sessionmaker), \
+         patch("main.generate_embeddings") as mock_gen_embed:
         
         mock_session.__enter__.return_value = mock_session
         success = run_worker()
@@ -63,15 +63,15 @@ def test_run_worker_no_products():
 
 def test_init_db_engine_success():
     with patch.dict(os.environ, {"DB_PASSWORD": "test-password", "GOOGLE_CLOUD_PROJECT": "test-project"}), \
-         patch("src.main.Connector"), \
-         patch("src.main.sqlalchemy.create_engine") as mock_create_engine:
+         patch("main.Connector"), \
+         patch("main.sqlalchemy.create_engine") as mock_create_engine:
         
-        from src.main import init_db_engine
+        from main import init_db_engine
         engine = init_db_engine()
         assert mock_create_engine.called
 
 def test_init_db_engine_no_password():
     with patch.dict(os.environ, {}, clear=True):
-        from src.main import init_db_engine
+        from main import init_db_engine
         with pytest.raises(ValueError, match="DB_PASSWORD environment variable is not set"):
             init_db_engine()

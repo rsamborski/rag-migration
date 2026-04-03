@@ -1,9 +1,5 @@
 import os
 import sys
-
-# Ensure 'src' package can be resolved when running as script
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 import sqlalchemy
 from google.cloud.alloydb.connector import Connector, IPTypes
 from sqlalchemy.orm import sessionmaker
