@@ -1,5 +1,5 @@
 /** @jest-environment jsdom */
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Home from '../page';
 import { useSearch } from '../../hooks/useSearch';
 import '@testing-library/jest-dom';
@@ -14,6 +14,8 @@ describe('Home Page', () => {
     mockUseSearch.mockReturnValue({
       query: '',
       setQuery: jest.fn(),
+      model: 'default',
+      setModel: jest.fn(),
       results: [],
       isLoading: false,
       error: null,
@@ -32,6 +34,8 @@ describe('Home Page', () => {
     mockUseSearch.mockReturnValue({
       query: 'test',
       setQuery: jest.fn(),
+      model: 'default',
+      setModel: jest.fn(),
       results: [
         { id: '1', name: 'Product A', category: 'Cat 1', brand: 'Brand X' }
       ],
@@ -49,6 +53,8 @@ describe('Home Page', () => {
     mockUseSearch.mockReturnValue({
       query: 'test',
       setQuery: jest.fn(),
+      model: 'default',
+      setModel: jest.fn(),
       results: [],
       isLoading: false,
       error: 'Something went wrong',
@@ -58,5 +64,28 @@ describe('Home Page', () => {
     render(<Home />);
     
     expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+  });
+
+  it('should render ModelSwitcher and call setModel on toggle', () => {
+    const mockSetModel = jest.fn();
+    mockUseSearch.mockReturnValue({
+      query: '',
+      setQuery: jest.fn(),
+      model: 'default',
+      setModel: mockSetModel,
+      results: [],
+      isLoading: false,
+      error: null,
+      performSearch: jest.fn(),
+    });
+
+    render(<Home />);
+    
+    expect(screen.getByText('Search Model:')).toBeInTheDocument();
+    
+    const geminiRadio = screen.getByLabelText('Gemini Multilingual');
+    fireEvent.click(geminiRadio);
+
+    expect(mockSetModel).toHaveBeenCalledWith('gemini');
   });
 });

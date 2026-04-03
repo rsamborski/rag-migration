@@ -17,6 +17,7 @@ describe('useSearch Hook', () => {
     expect(result.current.results).toEqual([]);
     expect(result.current.isLoading).toBe(false);
     expect(result.current.error).toBeNull();
+    expect(result.current.model).toBe('default');
   });
 
   it('should set the query correctly', () => {
@@ -29,7 +30,17 @@ describe('useSearch Hook', () => {
     expect(result.current.query).toBe('test query');
   });
 
-  it('should handle a successful search', async () => {
+  it('should set the model correctly', () => {
+    const { result } = renderHook(() => useSearch());
+
+    act(() => {
+      result.current.setModel('gemini');
+    });
+
+    expect(result.current.model).toBe('gemini');
+  });
+
+  it('should handle a successful search with default model', async () => {
     const mockResults = [
       { id: 1, name: 'Product 1', category: 'Category A', brand: 'Brand X' }
     ];
@@ -49,7 +60,34 @@ describe('useSearch Hook', () => {
       await result.current.performSearch();
     });
 
-    expect(global.fetch).toHaveBeenCalledWith('/api/search?q=test%20query');
+    expect(global.fetch).toHaveBeenCalledWith('/api/search?q=test%20query&model=default');
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.results).toEqual(mockResults);
+    expect(result.current.error).toBeNull();
+  });
+
+  it('should handle a successful search with gemini model', async () => {
+    const mockResults = [
+      { id: 1, name: 'Product 1', category: 'Category A', brand: 'Brand X' }
+    ];
+    
+    (global.fetch as jest.Mock).mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ results: mockResults }),
+    });
+
+    const { result } = renderHook(() => useSearch());
+
+    act(() => {
+      result.current.setQuery('test query');
+      result.current.setModel('gemini');
+    });
+
+    await act(async () => {
+      await result.current.performSearch();
+    });
+
+    expect(global.fetch).toHaveBeenCalledWith('/api/search?q=test%20query&model=gemini');
     expect(result.current.isLoading).toBe(false);
     expect(result.current.results).toEqual(mockResults);
     expect(result.current.error).toBeNull();

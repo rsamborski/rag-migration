@@ -2,21 +2,23 @@
 
 import { SearchBar } from '../components/SearchBar';
 import { SearchResultList } from '../components/SearchResultList';
+import ModelSwitcher from '../components/ModelSwitcher';
 import { useSearch } from '../hooks/useSearch';
 
 export default function Home() {
-  const { query, setQuery, results, isLoading, error, performSearch } = useSearch();
+  const { query, setQuery, model, setModel, results, isLoading, error, performSearch } = useSearch();
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto flex flex-col gap-8">
-        <header className="text-center">
+        <header className="text-center flex flex-col items-center">
           <h1 className="text-4xl font-bold text-gray-900 tracking-tight">
             Semantic Search
           </h1>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-gray-600 mb-6">
             Search our product catalog using natural language.
           </p>
+          <ModelSwitcher activeModel={model} onModelChange={setModel} />
         </header>
 
         <main className="flex flex-col gap-8">
