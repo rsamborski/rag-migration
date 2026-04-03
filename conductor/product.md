@@ -27,5 +27,5 @@ To ground the project in a concrete and reproducible example, the following tech
 
 *   **Core Process:** The embedding process for both the initial data load and subsequent migrations will be orchestrated using **Google Cloud Run Jobs** for scalable, parallel execution.
 *   **Vector Storage:** Embeddings and their corresponding text data will be stored and managed in **AlloyDB for PostgreSQL**, leveraging its powerful vector capabilities.
-*   **Demonstration UI:** A simple Web UI will be built using **Next.js** to provide a clear, interactive demonstration of the semantic search capabilities against the migrated dataset.
+*   **Demonstration UI:** A simple Web UI will be built using **Next.js** to provide a clear, interactive demonstration of the semantic search capabilities, including a toggle to compare search results between the original and newly migrated embedding models.
 *   **Dataset:** The project will use the publicly available **TheLook eCommerce dataset**, providing a realistic and feature-rich set of product information for the RAG system.

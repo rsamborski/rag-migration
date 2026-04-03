@@ -24,3 +24,10 @@ This document outlines the key technologies chosen for the RAG Embedding Migrati
 *   **Dataset:** **TheLook eCommerce Dataset**
     *   **Source:** Google BigQuery Public Data
     *   **Rationale:** This publicly available dataset provides a rich and realistic collection of e-commerce product data. Its structured nature is well-suited for demonstrating a real-world RAG use case.
+
+## 5. AI / Machine Learning
+
+*   **Embedding Models:** **Google Vertex AI**
+    *   **Original Model:** `text-embedding-005` (or previous versions like `text-embedding-004`) used for the initial data ingestion.
+    *   **Target Model:** `gemini-embedding-001` with Matryoshka Representation Learning (MRL) configured for 768 dimensions.
+    *   **Rationale:** The transition demonstrates upgrading from a legacy embedding model to the unified Gemini architecture, offering superior multilingual capabilities while utilizing MRL to avoid breaking existing database schemas (by keeping the dimensions at 768).
