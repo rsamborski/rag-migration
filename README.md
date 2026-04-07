@@ -30,4 +30,4 @@ This project is licensed under the [Apache License 2.0](LICENSE).
 
 ## Disclaimer
 
-This is not an officially supported Google product.
+This is not an officially supported Google product
