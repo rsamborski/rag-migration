@@ -69,9 +69,11 @@ Run the provided SQL migration script against your AlloyDB instance. Typically t
 
 ```bash
 # Example running from 03-migration directory
-# 1. Ensure proxy is running connected to your instance on port 5432
+# 1. Ensure your AlloyDB Auth proxy is running in another terminal window by running
+# ./alloydb-auth-proxy projects/<PROJECT_ID>/locations/<LOCATION>/clusters/<CLUSTER>/instances/<INSTANCE> --port <PORT> --auto-iam-authn --public-ip
+
 # 2. Run the script:
-psql -h 127.0.0.1 -U postgres -d rag_migration -f 001_add_embedding_v2.sql
+psql -h 127.0.0.1 -p 5432 -U postgres -d rag_migration -f 001_add_embedding_v2.sql
 ```
 
 ---
