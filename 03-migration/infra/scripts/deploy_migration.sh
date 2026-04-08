@@ -2,7 +2,7 @@
 set -e
 
 # Configuration
-export PROJECT_ID="${PROJECT_ID:-rsamborski-rag}"
+export PROJECT_ID="${PROJECT_ID:-your-project-id}"
 export REGION="${REGION:-europe-central2}"
 export REPO_NAME="${REPO_NAME:-rag-migration-repo}"
 export IMAGE_NAME="${IMAGE_NAME:-rag-migration-job}"
